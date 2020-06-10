@@ -1,0 +1,5 @@
+---
+# defaults file for build_vpc
+vpc_name_prefix: "test"
+vpc_cidr_block: "172.16.0.0/16"
+vpc_region: us-east-1

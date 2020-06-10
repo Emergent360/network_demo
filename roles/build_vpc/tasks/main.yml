@@ -1,0 +1,10 @@
+---
+# tasks file for build_vpc
+- name: Build VPC {{ vpc_name_prefix }}-vpc
+  ec2_vpc_net:
+    name: "{{ vpc_name_prefix }}-vpc"
+    cidr_block: "{{ vpc_cidr_block }}"
+    region: "{{ vpc_region }}"
+  register: build_vpc
+  until: build_vpc is not failed
+  retries: 5
