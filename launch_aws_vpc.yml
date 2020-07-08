@@ -1,8 +1,8 @@
 ---
 
-- name: "Create AWS VPC"
+- name: "Launch AWS VPC"
   hosts: localhost
   gather_facts: no
 
   roles:
-  - demo_aws_vpc
+  - launch_aws_vpc
