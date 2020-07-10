@@ -1,0 +1,6 @@
+- name: "Launch Network AMI"
+  hosts: localhost
+  gather_facts: no
+
+  roles:
+  - launch_network_ami

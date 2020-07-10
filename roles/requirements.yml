@@ -1,2 +1,3 @@
 ---
 - src: https://github.com/Emergent360/launch_aws_vpc.git
+- src: https://github.com/Emergent360/launch_network_ami.git
