@@ -1,6 +1,6 @@
-- name: show router facts
+- name: add ios user
   hosts: all
   gather_facts: no
 
   roles:
-  - show_router_facts
+  - add_ios_user
