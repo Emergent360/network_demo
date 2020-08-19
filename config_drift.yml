@@ -1,0 +1,6 @@
+- name: Config drift
+  hosts: all
+  gather_facts: no
+
+  roles:
+  - config_drift
