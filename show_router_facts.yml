@@ -1,5 +1,6 @@
 - name: show router facts
   hosts: all
+  gather_facts: no
 
   roles:
   - show_router_facts
