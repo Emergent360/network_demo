@@ -1,6 +1,6 @@
 - name: add ios user
   hosts: all
-  gather_facts: no
+  gather_facts: false
 
   roles:
   - add_ios_user

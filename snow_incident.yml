@@ -1,0 +1,40 @@
+---
+- name: Create SNow incident if no banner
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: Get current banner
+      ios_command:
+        commands:
+          - show banner login
+      register: banner
+
+    - name: Show banner
+      debug:
+        var: banner.stdout[0]
+      when: not banner.stdout[0]
+
+    - name: Create Snow incident when no banner
+      block:
+        - name: Create incident
+          snow_record:
+            username: "{{ snow_username }}"
+            password: "{{ snow_password }}"
+            instance: "{{ snow_instance }}"
+            state: present
+            table: incident
+            data:
+              short_description: "BANNER MISSING ON {{inventory_hostname}}"
+              severity: 3
+              priority: 2
+              caller_id: "System Administrator"
+              comments: "The login banner is missing on {{inventory_hostname}}"
+          register: snow_var
+          delegate_to: localhost
+
+        - name: Show incident number
+          debug:
+            var: snow_var.record.number
+      when: not banner.stdout[0]
