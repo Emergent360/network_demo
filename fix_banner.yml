@@ -11,7 +11,9 @@
         banner: login
         text: "BANNER FOR DEVICE {{ inventory_hostname }}"
         state: present
-
+    
+    - debug:
+        msg: "{{ incident_num }}"
 
     - name: Resolve incident
       snow_record:
