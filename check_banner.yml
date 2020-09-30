@@ -1,6 +1,6 @@
-- name: Config drift
+- name: check banner
   hosts: all
   gather_facts: no
 
   roles:
-  - config_drift
+  - check_banner
