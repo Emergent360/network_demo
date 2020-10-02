@@ -3,4 +3,4 @@
   gather_facts: no
 
   roles:
-  - launch_network_ami
+  - launch_network_router
