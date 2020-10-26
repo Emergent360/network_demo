@@ -1,0 +1,35 @@
+- name: init firewall config
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: create fw_hostname string
+      set_fact:
+        fw_hostname: "{{ inventory_hostname | replace('.', '-') }}"
+
+    - name: set hostname
+      cisco.asa.asa_config:
+        lines:
+        - hostname "{{ fw_hostname }}"
+      
+    - name: configure Outside interface
+      cisco.asa.asa_config:
+        lines:
+        - description Outside interface
+        - nameif outside
+        - security-level 0
+        - ip address dhcp
+        - no shutdown
+        parents: [interface TenGigabitEthernet0/0]
+      register: ouside_interface
+
+    - name: configure Inside interface
+      cisco.asa.asa_config:
+        lines:
+        - description Inside interface
+        - nameif inside
+        - security-level 100
+        - ip address dhcp
+        - no shutdown
+        parents: [interface TenGigabitEthernet0/1]
+      register: inside_interface
