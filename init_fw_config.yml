@@ -19,24 +19,24 @@
         lines:
         - hostname "{{ fw_hostname }}"
       
-    - name: configure Outside interface
+    - name: configure WEB interface
       cisco.asa.asa_config:
         lines:
-        - description Outside interface
-        - nameif outside
+        - description WEB interface
+        - nameif WEB
         - security-level 0
-        - ip address dhcp
+        - ip address 10.0.200.240 255.255.255.0
         - no shutdown
         parents: [interface TenGigabitEthernet0/0]
-      register: ouside_interface
+      register: web_interface
 
-    - name: configure Inside interface
+    - name: configure APP interface
       cisco.asa.asa_config:
         lines:
-        - description Inside interface
-        - nameif inside
+        - description APP interface
+        - nameif APP
         - security-level 100
-        - ip address dhcp
+        - ip address 10.0.100.240 255.255.255.0
         - no shutdown
         parents: [interface TenGigabitEthernet0/1]
-      register: inside_interface
+      register: app_interface
