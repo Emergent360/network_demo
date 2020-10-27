@@ -22,21 +22,19 @@
     - name: configure WEB interface
       cisco.asa.asa_config:
         lines:
-        - description WEB interface
         - nameif WEB
         - security-level 0
         - ip address 10.0.200.240 255.255.255.0
         - no shutdown
-        parents: [interface TenGigabitEthernet0/0]
+        parents: [interface GigabitEthernet0/0]
       register: web_interface
 
     - name: configure APP interface
       cisco.asa.asa_config:
         lines:
-        - description APP interface
         - nameif APP
         - security-level 100
         - ip address 10.0.100.240 255.255.255.0
         - no shutdown
-        parents: [interface TenGigabitEthernet0/1]
+        parents: [interface GigabitEthernet0/1]
       register: app_interface
