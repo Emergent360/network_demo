@@ -1,0 +1,6 @@
+- name: merge og config
+  hosts: all
+  gather_facts: no
+
+  roles:
+  - merge_og_config
