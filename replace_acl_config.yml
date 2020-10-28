@@ -48,4 +48,4 @@
                     netmask: 255.255.255.0
                     port_protocol:
                       eq: www   
-        state: replaced
+        state: "{{ module_state }}"
