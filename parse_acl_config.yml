@@ -59,4 +59,4 @@
                   address: 2001:fc8:0:4::/64
                   port_protocol:
                     eq: telnet   
-      state: parse
+      state: parsed
