@@ -12,7 +12,7 @@
   tasks:
   - name: Parse the commands for provided configuration
     cisco.asa.asa_acls:
-      config:
+      running_config:
         - acls:
           - name: test_access
             acl_type: extended
