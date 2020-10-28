@@ -1,4 +1,4 @@
-- name: replace acl config
+- name: render acl config
   hosts: all
   gather_facts: no
   vars:
