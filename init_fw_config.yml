@@ -61,4 +61,4 @@
                     port_protocol:
                       eq: www
                   log: debugging
-                  log: interval 300
+                  log: interval
