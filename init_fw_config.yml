@@ -38,3 +38,26 @@
         - no shutdown
         parents: [interface GigabitEthernet0/0]
       register: app_interface
+
+    - name: initial ACLs
+      cisco.asa.asa_acls:
+        state: replaced
+        config:
+          - acls:
+            - name: test_access
+              acl_type: extended
+              aces:
+                - grant: deny
+                  line: 1
+                  protocol: tcp
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 192.0.2.0
+                    netmask: 255.255.255.0
+                  destination:
+                    address: 192.0.3.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: www
+                  log: debugging interval 300
