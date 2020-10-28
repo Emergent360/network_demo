@@ -11,11 +11,11 @@
 
   tasks:
     - name: Gather facts
-        cisco.asa.asa_acls:
-          state: gathered
-        register: gather
+      cisco.asa.asa_acls:
+        state: gathered
+      register: gather
 
     - name: Print gathered facts
-        debug:
-          msg: "{{ gather }}"
+      debug:
+        msg: "{{ gather }}"
 
