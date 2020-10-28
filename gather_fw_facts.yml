@@ -13,7 +13,7 @@
   tasks:
     - name: Gather facts
       cisco.asa.asa_facts:
-        gather_subset: "{{ subset }}"
+        gather_subset: all
       register: gather
 
     - name: Print gathered facts
