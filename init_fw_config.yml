@@ -41,7 +41,7 @@
 
     - name: initial ACLs
       cisco.asa.asa_acls:
-        state: replaced
+        state: overridden
         config:
           - acls:
             - name: test_access
