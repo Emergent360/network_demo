@@ -11,7 +11,7 @@
 
   tasks:
     - name: Gather facts
-        ciscl.asa.asa_acls:
+        cisco.asa.asa_acls:
           state: gathered
         register: gather
 
