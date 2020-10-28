@@ -1,0 +1,51 @@
+- name: replace acl config
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: admin
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_become_password: emergent
+    ansible_connection: network_cli
+    ansible_network_os: asa
+
+  tasks:
+    - name: Replace device ACL configuration with provided ACL configuration
+      cisco.asa.asa_acls:
+        config:
+          - acls:
+            - name: test_access
+              acl_type: extended
+              aces:
+                - grant: deny
+                  line: 1
+                  protocol: tcp
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 192.0.3.0
+                    netmask: 255.255.255.0
+                  destination:
+                    address: 192.0.4.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: www
+                  log: default
+            - name: test_global_access
+              acl_type: extended
+              aces:
+                - grant: deny
+                  line: 1
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 192.0.4.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: telnet
+                  destination:
+                    address: 192.0.5.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: www   
+        state: replaced
