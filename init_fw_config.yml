@@ -64,6 +64,7 @@
 
     - name: initial OGs
       cisco.asa.asa_ogs:
+        state: overridden
         config:
           - object_type: network
             object_groups:
