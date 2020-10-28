@@ -60,4 +60,5 @@
                     netmask: 255.255.255.0
                     port_protocol:
                       eq: www
-                  log: debugging interval 300
+                  log: debugging
+                  log: interval 300
