@@ -13,7 +13,7 @@
   tasks:
     - name: Gather facts
       cisco.asa.asa_facts:
-        gather_subset: all
+        gather_subset: config
       register: gather
 
     - name: Print gathered facts
