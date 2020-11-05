@@ -10,6 +10,11 @@
     ansible_network_os: asa
 
   tasks:
+    - name: Gather only the config and default facts
+      cisco.asa.asa_facts:
+        gather_subset:
+        - config
+
     - name: create fw_hostname string
       set_fact:
         fw_hostname: "{{ inventory_hostname | replace('.', '-') }}"
