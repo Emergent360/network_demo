@@ -14,35 +14,35 @@
       cisco.asa.asa_acls:
         config:
           - acls:
-            - name: test_access
+            - name: www-inside
               acl_type: extended
               aces:
-                - grant: deny
+                - grant: permit
                   line: 1
                   protocol: tcp
                   protocol_options:
                     tcp: true
                   source:
-                    address: 192.0.2.0
+                    address: 10.1.50.0
                     netmask: 255.255.255.0
                   destination:
-                    address: 192.0.3.0
-                    netmask: 255.255.255.0
+                    any: true
                     port_protocol:
                       eq: www
-                  log: default
-                - grant: deny
+                  log: errors
+                - grant: permit
                   line: 2
                   protocol: icmp
                   protocol_options:
                     icmp:
                       alternate_address: true
                   source:
-                    address: 198.51.100.0
+                    address: 10.1.50.0
                     netmask: 255.255.255.0
                   destination:
-                    address: 198.51.110.0
-                    netmask: 255.255.255.0
+                    any: true
+                    port_protocol:
+                      eq: ssh
                   log: errors
             - name: test_R1_traffic
               acl_type: extended
