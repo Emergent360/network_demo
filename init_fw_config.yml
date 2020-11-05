@@ -40,9 +40,9 @@
       register: inside_interface
                   
     - name: initial inside ACL
-      cisco.asa.asa_acl:
+      asa_acl:
         lines:
-        - access-list icmp-inside line 1 extended permit icmp any any
+          - access-list icmp-inside line 1 extended permit icmp any any
         before: clear configure access-list icmp-inside
         match: line
         replace: line                  
