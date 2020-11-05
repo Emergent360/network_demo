@@ -42,7 +42,7 @@
                   destination:
                     any: true
                     port_protocol:
-                      eq: ssh
+                      eq: 22
                   log: errors
             - name: test_R1_traffic
               acl_type: extended
