@@ -41,7 +41,7 @@
                   destination:
                     any: true
                     port_protocol:
-                      eq: 22
+                      eq: ssh
                   log: default
             - name: test_R1_traffic
               acl_type: extended
