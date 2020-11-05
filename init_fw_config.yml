@@ -19,57 +19,30 @@
         lines:
         - hostname "{{ fw_hostname }}"
       
-    - name: configure WEB interface
+    - name: configure outside interface
       cisco.asa.asa_config:
         lines:
-        - nameif WEB
+        - nameif outside
         - security-level 0
-        - ip address 10.0.200.240 255.255.255.0
+        - ip address 10.1.10.10 255.255.255.0
         - no shutdown
         parents: [interface GigabitEthernet0/1]
-      register: web_interface
+      register: outside_interface
 
-    - name: configure APP interface
+    - name: configure inside interface
       cisco.asa.asa_config:
         lines:
-        - nameif APP
+        - nameif inside
         - security-level 100
         - ip address 10.0.100.240 255.255.255.0
         - no shutdown
         parents: [interface GigabitEthernet0/0]
-      register: app_interface
-
-    - name: initial ACLs
-      cisco.asa.asa_acls:
-        state: overridden
-        config:
-          - acls:
-            - name: test_access
-              acl_type: extended
-              aces:
-                - grant: deny
-                  line: 1
-                  protocol: tcp
-                  protocol_options:
-                    tcp: true
-                  source:
-                    address: 192.0.2.0
-                    netmask: 255.255.255.0
-                  destination:
-                    address: 192.0.3.0
-                    netmask: 255.255.255.0
-                    port_protocol:
-                      eq: www
-                  log: debugging
-
-    - name: initial OGs
-      cisco.asa.asa_ogs:
-        state: overridden
-        config:
-          - object_type: network
-            object_groups:
-              - name: test_network_og
-                description: test_network_og
-                network_object:
-                  host:
-                    - 192.0.3.1
+      register: inside_interface
+                  
+    - name: initial inside ACL
+      cisco.asa.asa_acl:
+        lines:
+        - access-list icmp-inside line 1 extended permit icmp any any
+        before: clear configure access-list icmp-inside
+        match: line
+        replace: line                  
