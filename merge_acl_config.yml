@@ -32,7 +32,7 @@
                   log: errors
                 - grant: permit
                   line: 2
-                  protocol: icmp
+                  protocol: tcp
                   protocol_options:
                     icmp:
                       alternate_address: true
