@@ -29,13 +29,12 @@
                     any: true
                     port_protocol:
                       eq: www
-                  log: errors
+                  log: default
                 - grant: permit
                   line: 2
                   protocol: tcp
                   protocol_options:
-                    icmp:
-                      alternate_address: true
+                    tcp: true
                   source:
                     address: 10.1.50.0
                     netmask: 255.255.255.0
@@ -43,7 +42,7 @@
                     any: true
                     port_protocol:
                       eq: 22
-                  log: errors
+                  log: default
             - name: test_R1_traffic
               acl_type: extended
               aces:
