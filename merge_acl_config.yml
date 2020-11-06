@@ -19,7 +19,8 @@
               aces:
                 - grant: permit
                   line: 1
-                  protocol: tcp
+                  protocol_options:
+                    tcp: true
                   source:
                     address: 10.1.50.0
                     netmask: 255.255.255.0
@@ -30,7 +31,8 @@
                   log: default
                 - grant: permit
                   line: 2
-                  protocol: tcp
+                  protocol_options:
+                    tcp: true
                   source:
                     address: 10.1.50.0
                     netmask: 255.255.255.0
@@ -44,7 +46,8 @@
               aces:
                 - grant: permit
                   line: 1
-                  protocol: tcp
+                  protocol_options:
+                    tcp: true
                   source:
                     address: 129.6.128.0
                     netmask: 255.255.255.0
@@ -56,7 +59,8 @@
                   log: default
                 - grant: permit
                   line: 2
-                  protocol: tcp
+                  protocol_options:
+                    tcp: true
                   source:
                     any: true
                   destination:
