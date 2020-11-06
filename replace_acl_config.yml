@@ -39,4 +39,4 @@
                     any: true
                     port_protocol:
                       eq: ssh
-        state: replaced
+        state: overridden
