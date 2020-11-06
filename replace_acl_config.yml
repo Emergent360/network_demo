@@ -40,5 +40,20 @@
                     any: true
                     port_protocol:
                       eq: ssh
-                  log: errors  
+                  log: errors
+            - name: www-outside
+              acl_type: extended
+              aces:
+                - grant: permit
+                  line: 1
+                  protocol_options:
+                    tcp: true
+                  source:
+                    any: true
+                  destination:
+                    address: 10.1.50.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: ssh
+                  log: errors 
         state: replaced
