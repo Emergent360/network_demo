@@ -28,19 +28,6 @@
                     address: 10.1.100.0
                     netmask: 255.255.255.0
                     port_protocol:
-                      eq: '5985'
-                  log: default
-                - grant: permit
-                  line: 2
-                  protocol_options:
-                    tcp: true
-                  source:
-                    address: 129.6.129.0
-                    netmask: 255.255.255.0
-                  destination:
-                    address: 10.1.100.0
-                    netmask: 255.255.255.0
-                    port_protocol:
                       eq: ssh
                   log: default
         state: replaced
