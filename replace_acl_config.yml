@@ -14,31 +14,38 @@
       cisco.asa.asa_acls:
         config:
           - acls:
-            - name: www-inside
+            - name: test_access
               acl_type: extended
               aces:
-                - grant: permit
+                - grant: deny
+                  line: 1
+                  protocol: tcp
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 192.0.3.0
+                    netmask: 255.255.255.0
+                  destination:
+                    address: 192.0.4.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: www
+                  log: default
+            - name: test_global_access
+              acl_type: extended
+              aces:
+                - grant: deny
                   line: 1
                   protocol_options:
                     tcp: true
                   source:
-                    address: 10.1.50.0
+                    address: 192.0.4.0
                     netmask: 255.255.255.0
-                  destination:
-                    any: true
                     port_protocol:
-                      eq: www
-                  log: errors
-                - grant: permit
-                  line: 2
-                  protocol_options:
-                    tcp: true
-                  source:
-                    address: 10.1.50.0
+                      eq: telnet
+                  destination:
+                    address: 192.0.5.0
                     netmask: 255.255.255.0
-                  destination:
-                    any: true
                     port_protocol:
-                      eq: ssh
-                  log: errors
+                      eq: www   
         state: replaced
