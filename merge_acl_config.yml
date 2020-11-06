@@ -43,7 +43,7 @@
                     port_protocol:
                       eq: ssh
                   log: default
-            - name: test_R1_traffic
+            - name: deny-ipv6-traffic
               acl_type: extended
               aces:
                 - grant: deny
