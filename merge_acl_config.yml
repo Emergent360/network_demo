@@ -41,7 +41,7 @@
                     port_protocol:
                       eq: ssh
                   log: default
-            - name: winrm-outside
+            - name: default-outside
               acl_type: extended
               aces:
                 - grant: permit
