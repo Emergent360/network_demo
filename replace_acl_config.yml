@@ -14,24 +14,36 @@
       cisco.asa.asa_acls:
         config:
           - acls:
-            - name: test_access
+            - name: default-outside
               acl_type: extended
               aces:
-                - grant: deny
+                - grant: permit
                   line: 1
-                  protocol: tcp
                   protocol_options:
                     tcp: true
                   source:
-                    address: 192.0.3.0
+                    address: 129.6.129.0
                     netmask: 255.255.255.0
                   destination:
-                    address: 192.0.4.0
+                    address: 10.1.100.0
                     netmask: 255.255.255.0
                     port_protocol:
-                      eq: www
+                      eq: '5985'
                   log: default
-            - name: test_global_access
+                - grant: permit
+                  line: 2
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 129.6.129.0
+                    netmask: 255.255.255.0
+                  destination:
+                    address: 10.1.100.0
+                    netmask: 255.255.255.0
+                    port_protocol:
+                      eq: ssh
+                  log: default
+            - name: deny-ipv6-traffic
               acl_type: extended
               aces:
                 - grant: deny
@@ -39,13 +51,9 @@
                   protocol_options:
                     tcp: true
                   source:
-                    address: 192.0.4.0
-                    netmask: 255.255.255.0
-                    port_protocol:
-                      eq: telnet
+                    address: 2001:db8:0:3::/64
                   destination:
-                    address: 192.0.5.0
-                    netmask: 255.255.255.0
+                    address: 2001:fc8:0:4::/64
                     port_protocol:
-                      eq: www   
+                      eq: telnet   
         state: replaced
