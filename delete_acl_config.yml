@@ -14,5 +14,5 @@
       cisco.asa.asa_acls:
         config:
           - acls:
-            - name: test_access
+            - name: www-outside
         state: deleted
