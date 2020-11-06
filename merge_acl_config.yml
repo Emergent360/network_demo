@@ -51,7 +51,7 @@
                     address: 10.1.100.0
                     netmask: 255.255.255.0
                     port_protocol:
-                      eq: winrm
+                      eq: '5985'
                   log: default
                 - grant: permit
                   line: 2
