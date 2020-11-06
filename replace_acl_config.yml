@@ -28,7 +28,6 @@
                     any: true
                     port_protocol:
                       eq: www
-                  log: default
                 - grant: permit
                   line: 2
                   protocol_options:
@@ -40,5 +39,4 @@
                     any: true
                     port_protocol:
                       eq: ssh
-                  log: default
         state: replaced
