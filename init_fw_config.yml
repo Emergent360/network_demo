@@ -40,9 +40,5 @@
       register: inside_interface
                   
     - name: initial inside ACL
-      asa_acl:
-        lines:
-          - access-list icmp-inside line 1 extended permit icmp any any
-        before: clear configure access-list icmp-inside
-        match: line
-        replace: line                  
+      cisco.asa.asa_acls:
+        state: deleted
