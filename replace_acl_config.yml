@@ -43,17 +43,4 @@
                     port_protocol:
                       eq: ssh
                   log: default
-            - name: deny-ipv6-traffic
-              acl_type: extended
-              aces:
-                - grant: deny
-                  line: 1
-                  protocol_options:
-                    tcp: true
-                  source:
-                    address: 2001:db8:0:3::/64
-                  destination:
-                    address: 2001:fc8:0:4::/64
-                    port_protocol:
-                      eq: telnet   
         state: replaced
