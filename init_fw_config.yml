@@ -42,3 +42,8 @@
     - name: initial inside ACL
       cisco.asa.asa_acls:
         state: deleted
+
+    - name: Delete ALL configured module attributes
+      cisco.asa.asa_ogs:
+        config:
+        state: deleted
