@@ -28,6 +28,7 @@
                     any: true
                     port_protocol:
                       eq: www
+                  log: errors
                 - grant: permit
                   line: 2
                   protocol_options:
@@ -39,4 +40,5 @@
                     any: true
                     port_protocol:
                       eq: ssh
-        state: overridden
+                  log: errors
+        state: replaced
