@@ -22,7 +22,7 @@
                   protocol_options:
                     tcp: true
                   source:
-                    address: 129.6.129.0
+                    address: 129.6.128.0
                     netmask: 255.255.255.0
                   destination:
                     address: 10.1.100.0
