@@ -13,7 +13,7 @@
     - name: initial inside ACL
       asa_acl:
         lines:
-          - access-list icmp-inside line 1 extended permit icmp any any
+          - access-list icmp-inside line 1 extended permit icmp any any log disable
         before: clear configure access-list icmp-inside
         match: line
         replace: line                  
