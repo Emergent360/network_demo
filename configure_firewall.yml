@@ -1,6 +1,0 @@
-- name: configure firewall
-  hosts: all
-  gather_facts: no
-
-  roles:
-  - configure_firewall
