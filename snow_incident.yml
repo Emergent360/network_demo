@@ -11,11 +11,6 @@
           - show banner login
       register: banner
 
-    - name: Show banner
-      debug:
-        var: banner.stdout[0]
-      when: not banner.stdout[0]
-
     - name: Create Snow incident when no banner
       block:
         - name: Create incident
