@@ -11,7 +11,7 @@
           - show banner login
       register: banner
 
-    - name: Create Snow incident when no banner
+    - name: Create SNow incident when no banner
       block:
         - name: Create incident
           snow_record:
