@@ -22,8 +22,8 @@
             table: incident
             data:
               short_description: "BANNER MISSING ON {{inventory_hostname}}"
-              severity: 3
-              priority: 2
+              impact: 2
+              urgency: 2
               caller_id: "System Administrator"
               comments: "The login banner is missing on {{inventory_hostname}}"
           register: snow_var
