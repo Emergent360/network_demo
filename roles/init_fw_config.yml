@@ -1,0 +1,49 @@
+- name: init firewall config
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: admin
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_become_password: emergent
+    ansible_connection: network_cli
+    ansible_network_os: asa
+
+  tasks:
+    - name: create fw_hostname string
+      set_fact:
+        fw_hostname: "{{ inventory_hostname | replace('.', '-') }}"
+
+    - name: set hostname
+      cisco.asa.asa_config:
+        lines:
+        - hostname "{{ fw_hostname }}"
+      
+    - name: configure outside interface
+      cisco.asa.asa_config:
+        lines:
+        - nameif outside
+        - security-level 0
+        - ip address 10.1.10.10 255.255.255.0
+        - no shutdown
+        parents: [interface GigabitEthernet0/1]
+      register: outside_interface
+
+    - name: configure inside interface
+      cisco.asa.asa_config:
+        lines:
+        - nameif inside
+        - security-level 100
+        - ip address 10.0.100.240 255.255.255.0
+        - no shutdown
+        parents: [interface GigabitEthernet0/0]
+      register: inside_interface
+                  
+    - name: initial inside ACL
+      cisco.asa.asa_acls:
+        state: deleted
+
+    - name: Delete ALL configured module attributes
+      cisco.asa.asa_ogs:
+        config:
+        state: deleted

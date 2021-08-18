@@ -1,0 +1,28 @@
+- name: init firewall config
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: admin
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_become_password: emergent
+    ansible_connection: network_cli
+    ansible_network_os: asa
+
+  tasks:
+    - name: initial inside ACL
+      cisco.asa.asa_acls:
+        config:
+        - acls:
+          - name: icmp-inside
+            acl_type: extended
+            aces:
+            - grant: permit
+              line: 1
+              protocol: icmp
+              source:
+                any: true
+              destination:
+                any: true
+              log: disable
+        state: merged

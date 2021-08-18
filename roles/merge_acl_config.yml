@@ -1,0 +1,59 @@
+- name: merge acl config
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: admin
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_become_password: emergent
+    ansible_connection: network_cli
+    ansible_network_os: asa
+
+  tasks:
+    - name: Merge device ACL configuration with provided ACL configuration
+      cisco.asa.asa_acls:
+        config:
+          - acls:
+            - name: www-inside
+              acl_type: extended
+              aces:
+                - grant: permit
+                  line: 1
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 10.1.50.0
+                    netmask: 255.255.255.0
+                  destination:
+                    any: true
+                    port_protocol:
+                      eq: www
+                  log: default
+                - grant: permit
+                  line: 2
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 10.1.50.0
+                    netmask: 255.255.255.0
+                  destination:
+                    any: true
+                    port_protocol:
+                      eq: ssh
+                  log: default
+            - name: deny-ipv6-traffic
+              acl_type: extended
+              aces:
+                - grant: deny
+                  line: 1
+                  protocol_options:
+                    tcp: true
+                  source:
+                    address: 2001:db8:0:3::/64
+                    port_protocol:
+                      eq: www
+                  destination:
+                    address: 2001:fc8:0:4::/64
+                    port_protocol:
+                      eq: telnet   
+        state: merged
