@@ -3,7 +3,7 @@
     fw_hostname: "{{ inventory_hostname | replace('.', '-') }}"
 
 - name: set hostname
-  cisco.asa.asa_config:
+  asa_config:
     lines:
     - hostname "{{ fw_hostname }}"
   
