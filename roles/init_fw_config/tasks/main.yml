@@ -8,7 +8,7 @@
     - hostname "{{ fw_hostname }}"
   
 - name: configure outside interface
-  cisco.asa.asa_config:
+  asa_config:
     lines:
     - nameif outside
     - security-level 0
