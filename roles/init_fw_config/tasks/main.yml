@@ -10,19 +10,19 @@
 - name: configure outside interface
   asa_config:
     lines:
-    - nameif outside
-    - security-level 0
-    - ip address 10.1.10.10 255.255.255.0
+    - nameif management
+    - security-level 100
+    - ip address dhcp setroute
     - no shutdown
-    parents: [interface GigabitEthernet0/1]
+    parents: [interface Management0/0]
   register: outside_interface
 
 - name: configure inside interface
   cisco.asa.asa_config:
     lines:
     - nameif inside
-    - security-level 100
-    - ip address 10.0.100.240 255.255.255.0
+    - security-level 0
+    - ip address dhcp setroute
     - no shutdown
     parents: [interface GigabitEthernet0/0]
   register: inside_interface
