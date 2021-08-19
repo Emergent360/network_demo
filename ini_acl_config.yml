@@ -1,4 +1,4 @@
-- name: firewall config
+- name: init acl config
   hosts: all
   gather_facts: no
   vars:
@@ -10,4 +10,4 @@
     ansible_network_os: cisco.asa.asa
 
   roles:
-    - init_fw_config
+    - init_acl_config
