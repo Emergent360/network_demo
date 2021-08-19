@@ -1,7 +1,7 @@
 - name: Merge device ACL configuration with provided ACL configuration
   cisco.asa.asa_acls:
     config:
-      - acls:
+      acls:
         - name: www-inside
           acl_type: extended
           aces:
