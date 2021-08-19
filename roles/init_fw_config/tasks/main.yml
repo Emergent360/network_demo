@@ -3,12 +3,12 @@
     fw_hostname: "{{ inventory_hostname | replace('.', '-') }}"
 
 - name: set hostname
-  asa_config:
+  cisco.asa.asa_config:
     lines:
     - hostname "{{ fw_hostname }}"
   
 - name: configure outside interface
-  asa_config:
+  cisco.asa.asa_config:
     lines:
     - nameif management
     - security-level 100
