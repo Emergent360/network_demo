@@ -23,7 +23,7 @@
     lines:
     - nameif inside
     - security-level 100
-    - ip address dhcp setroute
+    - ip address dhcp
     - no shutdown
     parents: [interface GigabitEthernet0/0]
   register: inside_interface
