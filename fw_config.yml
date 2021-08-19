@@ -11,3 +11,4 @@
 
   roles:
     - init_fw_config
+    - init_acl_config
