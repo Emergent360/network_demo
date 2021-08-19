@@ -6,6 +6,7 @@
   cisco.asa.asa_config:
     lines:
     - hostname "{{ fw_hostname }}"
+  changed_when: false
   
 - name: configure outside interface
   cisco.asa.asa_config:
