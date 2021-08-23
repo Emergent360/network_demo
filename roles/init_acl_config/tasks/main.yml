@@ -2,6 +2,5 @@
   cisco.asa.asa_config:
     lines:
     - access-list icmp-inside line 1 extended permit icmp any any
-    before: clear configure access-list icmp-inside
     match: line
     replace: line 
