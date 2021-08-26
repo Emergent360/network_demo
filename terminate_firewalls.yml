@@ -4,5 +4,9 @@
   hosts: localhost
   gather_facts: no
 
-  roles:
-  - terminate_ami
+  tasks:
+  - name: find private interface
+    ec2_eni_info:
+
+#  roles:
+#  - terminate_ami
